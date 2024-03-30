@@ -1,10 +1,29 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../config/firebase";
+
 
 const LoginPage = () => {
     const navigation = useNavigation();
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+
+    const onHandleLogin = () => {
+        if (email !== "" && password !== "") {
+            signInWithEmailAndPassword(auth, email, password)
+                .then(() => {
+                    console.log("Login success");
+                    navigation.navigate('Home');
+                })
+                .catch((err) => Alert.alert("Email or password invalid"));
+        }
+    };
+
 
     return (
 
@@ -12,26 +31,36 @@ const LoginPage = () => {
 
             <Image style={styles.logo} source={require('../images/logoDriveMyCar.jpg')} />
 
-            <View style={styles.searchBar}>
-                <TextInput
-                    style={styles.searchBarText}
-                    placeholder="username"
-                    placeholderTextColor="#000"
-                />
-            </View>
-            <View style={styles.searchBar}>
-                <TextInput
-                    style={styles.searchBarText}
-                    placeholder="password"
-                    placeholderTextColor="#000"
-                />
-            </View>
+            <TextInput
+                style={styles.inputField}
+                placeholder="Enter email"
+                autoCapitalize="none"
+                keyboardType="email-address"
+                textContentType="emailAddress"
+                autoFocus={true}
+                value={email}
+                onChangeText={(text) => setEmail(text)}
+                placeholderTextColor="#AEAEAE"
+            />
+
+            <TextInput
+                style={styles.inputField}
+                placeholder="Enter password"
+                autoCapitalize="none"
+                autoCorrect={false}
+                secureTextEntry={true}
+                textContentType="password"
+                value={password}
+                onChangeText={(text) => setPassword(text)}
+                placeholderTextColor="#AEAEAE"
+            />
+
 
             <View style={styles.body}>
                 <View style={styles.bodyTop}>
                     <TouchableOpacity
                         style={styles.bodyTopButton}
-                        onPress={() => navigation.navigate('Home')}
+                        onPress={onHandleLogin}
                     >
                         <Text style={styles.bodyTopButtonText}>Login</Text>
                     </TouchableOpacity>
@@ -48,108 +77,74 @@ const LoginPage = () => {
 
     );
 
-}
+};
 
 const styles = StyleSheet.create({
     container: {
-        flex: 3,
+        flex: 1,
         margin: 'auto',
         width: '100%',
         height: '50%',
         backgroundColor: '#fff',
         marginTop: 80,
+        alignItems: 'center',
     },
 
     logo: {
         width: 200,
         height: 200,
+        marginVertical: '15%',
         borderRadius: 50,
         marginRight: 10,
         justifyContent: 'center',
-        flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 80,
-        marginLeft: 100,
     },
 
-    header: {
-        height: 50,
+    inputField: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-    },
-    headerLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    headerText: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginLeft: 20,
-    },
-    headerRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    searchBar: {
-        height: 50,
         backgroundColor: '#fff',
-        flexDirection: 'row',
+        width: '80%',
+        height: 45,
+        paddingStart: 15,
+        margin: 15,
         alignItems: 'center',
-        paddingHorizontal: 20,
-        elevation: 10,
-        marginTop: 20,
-        marginHorizontal: 20,
-        borderRadius: 10,
+        justifyContent: 'center',
+        borderRadius: 15,
+        borderWidth: 2,
+        borderColor: '#000',
     },
-    searchBarText: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginLeft: 20,
-    },
+
     body: {
-        flex: 1,
-        paddingHorizontal: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+
     },
     bodyTop: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 55,
+        marginBottom: '15%',
+        margin: '8%',
+
     },
     bodyTopButton: {
-        height: 80,
-        width: 170,
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        elevation: 10,
-        justifyContent: 'center',
+        flex: 1,
+        backgroundColor: '#000',
+        width: '40%',
+        margin: 5,
+        padding: 15,
         alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 15,
+
     },
     bodyTopButtonText: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginTop: 10,
+        color: '#fff',
     },
-    bodyBottom: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 40,
-    },
-    bodyBottomButton: {
-        height: 150,
-        width: 150,
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        elevation: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    bodyBottomButtonText: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginTop: 10,
-    },
+
 });
 
 export default LoginPage;
