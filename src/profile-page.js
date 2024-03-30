@@ -21,9 +21,10 @@ const ProfilePage = () => {
             <View style={styles.header}>
                 <View style={styles.headerLeft}>
                     <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-                        <Image style={styles.logo} source={require('../images/logoDriveMyCar.jpg')} />
+                        <View style={styles.profilePicContainer}>
+                            <Image style={styles.profilePic} source={require('../images/profileAvatar.jpg')} />
+                        </View>
                     </TouchableOpacity>
-                    <Text style={styles.headerText}>Hi, {user ? user.email : ''}</Text>
                 </View>
                 <View style={styles.headerRight}>
                     <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
@@ -67,8 +68,13 @@ const styles = StyleSheet.create({
         borderBottomColor: '#D8D8D8',
     },
     headerLeft: {
+        flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
+        width: 200,
+        height: 200,
+        marginHorizontal: 50,
+        marginTop: 30,
     },
     headerText: {
         fontSize: 20,
@@ -95,6 +101,19 @@ const styles = StyleSheet.create({
     },
     bodyTopButtonText: {
         fontSize: 20,
+    },
+    profilePicContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 250,
+        height: 250,
+    },
+    profilePic: {
+        flex: 1,
+        width: 250,
+        height: 250,
+        borderRadius: 125, // Half of the width and height to make it a circle
     },
 });
 
