@@ -6,8 +6,12 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase";
 
 
+import usePersistedUser from "./persistency-loggin";
+
+
 const LoginPage = () => {
     const navigation = useNavigation();
+    const user = usePersistedUser();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -23,6 +27,10 @@ const LoginPage = () => {
                 .catch((err) => Alert.alert("Email or password invalid"));
         }
     };
+
+    if (user) {
+        navigation.navigate('Home');
+    }
 
 
     return (
