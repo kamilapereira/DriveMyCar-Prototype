@@ -18,8 +18,5 @@ This project is currently in development and serves as the final project for the
 - APIs: [List any third-party APIs integrated into the project]
 - Payment Gateway: [To be decided]
 
-## Description
-DriveMyCarApp is a project that aims to create a car rental application. It allows users to rent cars for a specified duration and provides features such as car selection, booking management, and payment processing.
-
 ## Contact
 For any inquiries or issues, please contact me at [pereira.kamila@outlook.com](mailto:pereira.kamila@outlook.com).
