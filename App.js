@@ -19,7 +19,7 @@ const App = () => {
                 <Stack.Screen name="Home" component={HomePage} options={{headerShown: false}} />
                 <Stack.Screen name="Search" component={SearchPage} options={{headerShown: false}} />
                 <Stack.Screen name="RegisterPage" component={RegisterPage} options={{headerShown: false}} />
-                <Stack.Screen name="Profile" component={ProfilePage} options={{headerShown: false}} />
+                <Stack.Screen name="ProfilePage" component={ProfilePage} options={{headerShown: false}} />
 
                 
             </Stack.Navigator>
