@@ -1,23 +1,23 @@
 //create a code where the user persists in the app after logging in even after the app is closed.
 
 // Path: DriveMyCarApp/src/persistency-loggin.js
-import React, { useEffect, useState } from 'react';
-import { auth } from "../config/firebase";
+// import React, { useEffect, useState } from 'react';
+// import { auth } from "../config/firebase";
 
-const usePersistedUser = () => {
-    const [user, setUser] = useState(null);
+// const usePersistedUser = () => {
+//     const [user, setUser] = useState(null);
 
-    useEffect(() => {
-        const currentUser = auth.currentUser;
-        if (currentUser) {
-            setUser(currentUser);
-        }
-    }, []);
+//     useEffect(() => {
+//         const currentUser = auth.currentUser;
+//         if (currentUser) {
+//             setUser(currentUser);
+//         }
+//     }, []);
 
-    return user;
-};
+//     return user;
+// };
 
-export default usePersistedUser;
+// export default usePersistedUser;
 
 // Path: DriveMyCarApp/src/login-page.js
 // import React, { useState } from "react";

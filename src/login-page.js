@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-import usePersistedUser from "./persistency-loggin";
+//import usePersistedUser from "./persistency-loggin";
 
 
 const LoginPage = () => {
+
+
+
     const navigation = useNavigation();
-    const user = usePersistedUser();
+//    const user = usePersistedUser();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,6 +26,9 @@ const LoginPage = () => {
             signInWithEmailAndPassword(auth, email, password)
                 .then(() => {
                     console.log("Login success");
+
+                    AsyncStorage.setItem('isLoggedIn', JSON.stringify(auth.currentUser));
+
                     navigation.navigate('Home');
                 })
                 .catch((err) => Alert.alert("Email or password invalid"));

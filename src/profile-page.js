@@ -5,6 +5,7 @@ import { auth } from "../config/firebase";
 import { Ionicons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 
+
 const ProfilePage = () => {
     const navigation = useNavigation();
     const [user, setUser] = useState(null);
