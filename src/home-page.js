@@ -1,5 +1,3 @@
-//create a simple home page with a search bar
-
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
