@@ -20,7 +20,7 @@ const HomePage = () => {
                     <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
 
                     </TouchableOpacity>
-                    <Text style={styles.headerText}>Hi, Kamila!</Text>
+                    <Text style={styles.headerText}>Hi, !</Text>
                 </View>
                 <View style={styles.headerRight}>
                     <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
