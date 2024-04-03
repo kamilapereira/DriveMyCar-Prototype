@@ -24,7 +24,7 @@ const HomePage = () => {
                     <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
                         <Ionicons name="notifications-outline" size={24} color="black" />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
                         <Feather name="settings" size={24} color="black" />
                     </TouchableOpacity>
                 </View>
