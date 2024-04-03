@@ -4,7 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import { auth } from "../config/firebase";
 import { Ionicons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ProfilePage = () => {
     const navigation = useNavigation();
@@ -17,32 +16,7 @@ const ProfilePage = () => {
         }
     }, []);
 
-    // Storing data
-const storeData = async (key, value) => {
-    try {
-      await AsyncStorage.setItem(key, value);
-      console.log('Data stored successfully');
-    } catch (error) {
-      console.error('Error storing data:', error);
-    }
-  };
-  
-  // Retrieving data
-  const getData = async (key) => {
-    try {
-      const value = await AsyncStorage.getItem(key);
-      if (value !== null) {
-        console.log('Data retrieved successfully:', value);
-        return value;
-      } else {
-        console.log('No data found for key:', key);
-        return null;
-      }
-    } catch (error) {
-      console.error('Error retrieving data:', error);
-      return null;
-    }
-  };  
+    
 
     return (
         <View style={styles.container}>

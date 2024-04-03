@@ -7,7 +7,6 @@ import { Feather } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-import { auth, database } from "../config/firebase";
 
 const HomePage = () => {
     const navigation = useNavigation();
@@ -25,11 +24,10 @@ const HomePage = () => {
                     <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
                         <Ionicons name="notifications-outline" size={24} color="black" />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('ProfilePage')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Profil')}>
                         <Feather name="settings" size={24} color="black" />
                     </TouchableOpacity>
                 </View>
-                
             </View>
             <View style={styles.searchBar}>
                 <FontAwesome name="search" size={24} color="black" />

@@ -4,9 +4,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase";
-
-
-import usePersistedUser from "./persistency-loggin";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const LoginPage = () => {
@@ -22,6 +20,7 @@ const LoginPage = () => {
             signInWithEmailAndPassword(auth, email, password)
                 .then(() => {
                     console.log("Login success");
+                    AsyncStorage.setItem('isLoggedIn', 'true'); // Store authentication status
                     navigation.navigate('Home');
                 })
                 .catch((err) => Alert.alert("Email or password invalid"));
