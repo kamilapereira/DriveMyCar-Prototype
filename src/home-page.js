@@ -9,6 +9,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { auth, database } from "../config/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const HomePage = () => {
@@ -31,10 +32,9 @@ const HomePage = () => {
                 const docSnapshot = await getDoc(userRef);
         
                 if (docSnapshot.exists()) {
-                    const userData = docSnapshot.data();
-                    setDisplayName(userData.displayName);
+                    setDisplayName(docSnapshot.data().displayName);
                 } else {
-                    Alert.alert("User profile not found");
+                    console.log("User profile not found");
                 }
             } catch (error) {
                 console.error("Error fetching user profile:", error);
@@ -45,6 +45,25 @@ const HomePage = () => {
         fetchDisplayName(); // Fetch displayName when the component mounts
 
     }, []);
+
+        // Check user login status using AsyncStorage
+        useEffect(() => {
+            const checkUserLoggedIn = async () => {
+                try {
+                    const user = await AsyncStorage.getItem('user');
+                    if (user) {
+                        const userData = JSON.parse(user);
+                        setDisplayName(userData.displayName);
+                    } else {
+                        console.log("It's not possible to get the user data.");
+                    }
+                } catch (error) {
+                    console.error('Error checking user login status:', error);
+                }
+            };
+    
+            checkUserLoggedIn();
+        }, []);
 
     return (
         <View style={styles.container}>

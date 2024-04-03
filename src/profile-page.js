@@ -26,7 +26,7 @@ const ProfilePage = () => {
                 if (docSnapshot.exists()) {
                     setUserProfile(docSnapshot.data());
                 } else {
-                    Alert.alert("User profile not found");
+                    console.log("User profile not found");
                 }
             } catch (error) {
                 console.error("Error fetching user profile:", error);
