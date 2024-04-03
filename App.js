@@ -1,5 +1,3 @@
-// create const App to navigate between pages
-
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -7,6 +5,7 @@ import LoginPage from './src/login-page';
 import HomePage from './src/home-page';
 import SearchPage from './src/search-page';
 import RegisterPage from './src/register-page';
+import ProfilePage from './src/profile-page';
 
 
 const Stack = createStackNavigator();
@@ -20,6 +19,8 @@ const App = () => {
                 <Stack.Screen name="Home" component={HomePage} options={{headerShown: false}} />
                 <Stack.Screen name="Search" component={SearchPage} options={{headerShown: false}} />
                 <Stack.Screen name="RegisterPage" component={RegisterPage} options={{headerShown: false}} />
+                <Stack.Screen name="ProfilePage" component={ProfilePage} options={{headerShown: false}} />
+
                 
             </Stack.Navigator>
         </NavigationContainer>

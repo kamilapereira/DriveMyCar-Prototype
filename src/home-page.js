@@ -1,7 +1,5 @@
-//create a simple home page with a search bar
-
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -26,7 +24,7 @@ const HomePage = () => {
                     <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
                         <Ionicons name="notifications-outline" size={24} color="black" />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('ProfilePage')}>
                         <Feather name="settings" size={24} color="black" />
                     </TouchableOpacity>
                 </View>
