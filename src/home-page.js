@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
@@ -7,24 +7,58 @@ import { Feather } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
+import { auth, database } from "../config/firebase";
+import { doc, getDoc } from "firebase/firestore";
+
 
 const HomePage = () => {
     const navigation = useNavigation();
+    const [displayName, setDisplayName] = useState(""); // State to store displayName
+
+    useEffect(() => {
+        // Function to fetch current user's displayName
+        const fetchDisplayName = async () => {
+            try {
+                const currentUser = auth.currentUser;
+                if (!currentUser) {
+                    // Handle the case where the user is not authenticated
+                    Alert.alert("User not authenticated");
+                    return;
+                }
+        
+                const userId = currentUser.uid;
+                const userRef = doc(database, `users/${userId}`);
+                const docSnapshot = await getDoc(userRef);
+        
+                if (docSnapshot.exists()) {
+                    const userData = docSnapshot.data();
+                    setDisplayName(userData.displayName);
+                } else {
+                    Alert.alert("User profile not found");
+                }
+            } catch (error) {
+                console.error("Error fetching user profile:", error);
+                // Handle error if needed
+            }
+        };
+
+        fetchDisplayName(); // Fetch displayName when the component mounts
+
+    }, []);
 
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <View style={styles.headerLeft}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-
+                    <TouchableOpacity onPress={() => navigation.navigate('ProfilePage')}>
+                        <Text style={styles.headerText}>Hi, {displayName}!</Text>
                     </TouchableOpacity>
-                    <Text style={styles.headerText}>Hi, !</Text>
                 </View>
                 <View style={styles.headerRight}>
                     <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
                         <Ionicons name="notifications-outline" size={24} color="black" />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('ProfilePage')}>
                         <Feather name="settings" size={24} color="black" />
                     </TouchableOpacity>
                 </View>
