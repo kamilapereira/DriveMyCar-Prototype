@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image, Alert } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { auth, database } from "../config/firebase";
 import { doc, getDoc } from "firebase/firestore";
@@ -38,14 +38,30 @@ const ProfilePage = () => {
 
     }, []);
 
+    const signOut = () => {
+        auth.signOut()
+            .then(() => {
+                console.log("User signed out successfully");
+                // Redirect to login page or do other necessary actions after sign out
+                navigation.navigate('LoginPage'); // Navigate to LoginPage after signing out
+            })
+            .catch((error) => {
+                console.error("Error signing out:", error);
+                // Handle error if needed
+            });
+    };
+
     return (
         <View style={styles.container}>
+            <View style={styles.avatarContainer}>
+                <Image style={styles.avatar} source={require('../images/profileAvatar.jpg')} />
+            </View>
             <Text style={styles.heading}>Your Profile</Text>
             {userProfile && (
                 <View style={styles.profileInfo}>
-                    <Text>Name: {userProfile.displayName}</Text>
-                    <Text>Email: {userProfile.email}</Text>
-                    <Text>Phone Number: {userProfile.phoneNumber}</Text>
+                    <Text style={styles.profileItem}>Name: {userProfile.displayName}</Text>
+                    <Text style={styles.profileItem}>Email: {userProfile.email}</Text>
+                    <Text style={styles.profileItem}>Phone Number: {userProfile.phoneNumber}</Text>
                     {/* Add more profile information fields as needed */}
                 </View>
             )}
@@ -62,24 +78,21 @@ const ProfilePage = () => {
     );
 };
 
-const signOut = () => {
-    auth.signOut()
-        .then(() => {
-            console.log("User signed out successfully");
-            // Redirect to login page or do other necessary actions after sign out
-        })
-        .catch((error) => {
-            console.error("Error signing out:", error);
-            // Handle error if needed
-        });
-};
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
         padding: 20,
+    },
+    avatarContainer: {
+        marginBottom: 20,
+        alignItems: "center",
+    },
+    avatar: {
+        width: 200,
+        height: 200,
+        borderRadius: 50,
     },
     heading: {
         fontSize: 24,
@@ -88,9 +101,14 @@ const styles = StyleSheet.create({
     },
     profileInfo: {
         marginBottom: 20,
+        alignItems: "center",
+    },
+    profileItem: {
+        fontSize: 18,
+        marginBottom: 10,
     },
     button: {
-        backgroundColor: "#007bff",
+        backgroundColor: "#222222",
         padding: 10,
         borderRadius: 5,
         marginTop: 10,
