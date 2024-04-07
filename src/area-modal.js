@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         padding: 20,
         borderRadius: 10,
         width: '80%',
-        maxHeight: '70%', // Set a maximum height to make it scrollable
+        maxHeight: '70%',
     },
     scrollViewContent: {
         flexGrow: 1,

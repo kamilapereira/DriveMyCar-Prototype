@@ -123,7 +123,7 @@ const HomePage = () => {
                 </View>
 
             </View>
-            {/* Render the AreaModal component */}
+            
             <AreaModal
                 isVisible={isAreaModalVisible}
                 onClose={closeAreaModal}
