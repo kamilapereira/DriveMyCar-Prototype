@@ -15,7 +15,6 @@ This project is currently in development and serves as the final project for the
 
 - Development Language: React Native/JavaScript
 - Database: Firebase
-- APIs: [List any third-party APIs integrated into the project]
 - Payment Gateway: [To be decided]
 
 ## Contact
