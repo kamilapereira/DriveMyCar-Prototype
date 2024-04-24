@@ -41,6 +41,8 @@ To run on iPhone: download the Expo Go app from AppStore, open the camera and sc
 
 To run on Android: download the Expo Go app from PlayStore, open the app and scan the QR code showed on the CMD.
 
+When opening on a mobile phone, make sure the mobile and the computer are connected to the same network.
+
 To run on an emulator: open the Emulator Android Phone, go to the CMD and press "a".
 
 You can register or use this user and login:
