@@ -17,5 +17,35 @@ This project is currently in development and serves as the final project for the
 - Database: Firebase
 - Payment Gateway: [To be decided]
 
+## How to run this project
+
+- Ensure you have Node.js installed on your machine. If not, download and install it.
+
+- Clone the repository in your machine:
+	git clone https://github.com/kamilapereira/DriveMyCarApp.git
+
+- Navigate to the project repository using "cd" command.
+
+- Install the Expo CLI globally:
+	npm install -g expo-cli
+
+- Install dependencies:
+	npm install
+
+- Start the Expo development server:
+	npx expo start
+
+To be able to see the app running you will need a mobile phone or an emulator.
+
+To run on iPhone: download the Expo Go app from AppStore, open the camera and scan the QR code showed on the CMD.
+
+To run on Android: download the Expo Go app from PlayStore, open the app and scan the QR code showed on the CMD.
+
+To run on an emulator: open the Emulator Android Phone, go to the CMD and press "a".
+
+You can register or use this user and login:
+email: tes2@test2.com
+Password: 123456
+
 ## Contact
 For any inquiries or issues, please contact me at [pereira.kamila@outlook.com](mailto:pereira.kamila@outlook.com).
